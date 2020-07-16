@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Article {
     @Id   //主键标识
     //自增主键
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @Column//(name = "author")   //和数据表对应的列
     private String author;
