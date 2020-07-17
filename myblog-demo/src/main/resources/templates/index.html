@@ -6,5 +6,12 @@
 </head>
 <body>
     <a href="login.html">login</a>
+    <hr>
+    <div th:each="arti:${articles}">
+        <li th:text="${arti.articleTitle}"></li>
+        <li th:text="${arti.articleContent}"></li>
+        <li th:text="${arti.author}"></li>
+        <li th:text="${arti.publishDate}"></li>
+    </div>
 </body>
 </html>

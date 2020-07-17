@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Manage</title>
+</head>
+<body>
+    <header>文章管理</header>
+    <p></p>
+    <div>
+        <ul>
+            <li><a th:href="/management/newArticle">添加文章</a> </li>
+        </ul>
+    </div>
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="arti:${articles}">
+            <td>[[${arti.articleTitle}}]]</td>
+            <td>[[${arti.author}]]</td>
+            <td>[[${arti.publishDate}]]</td>
+        </tr>
+    </tbody>
+</body>
+</html>
