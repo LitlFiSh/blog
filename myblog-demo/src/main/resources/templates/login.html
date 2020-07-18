@@ -5,14 +5,14 @@
     <title>登录</title>
     <link th:href="@{/webjars/bootstrap/4.5.0/css/bootstrap.css}" rel="stylesheet">
     <link th:href="@{/css/login.css}" rel="stylesheet">
-<!--    暂时引入bootstrap的css资源-->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
 </head>
-<body>
+<body class="text-center">
     <form th:action="@{/user/login}" method="post" class="form-signin">
         <input type="text" name="username" class="form-control" placeholder="Uername" required="required">
         <input type="password" name="password" class="form-control" placeholder="Password" required="required">
+        <p class="text-center" style="color:red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
         <button type="submit" class="btn btn-lg btn-primary btn-block">登录</button>
     </form>
-    <p style="color:red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
 </body>
 </html>

@@ -2,11 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Manage</title>
+    <title>管理</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/bar.css}" rel="stylesheet">
 </head>
 <body>
+    <div th:replace="publicItem/bar::topbar(currentUri='manage')"></div>
     <header>shouye</header>
-    <p>[[${session.loginUser}]]</p>
+    <a href="/index.html">index</a>
     <div>
         <ul>
             <li><a th:href="@{/artis}">文章管理</a> </li>

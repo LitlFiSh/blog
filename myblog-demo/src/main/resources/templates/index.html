@@ -2,16 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
+    <title>首页</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/bar.css}" rel="stylesheet">
 </head>
 <body>
-    <a href="login.html">login</a>
-    <hr>
-    <div th:each="arti:${articles}">
-        <li th:text="${arti.articleTitle}"></li>
-        <li th:text="${arti.articleContent}"></li>
-        <li th:text="${arti.author}"></li>
-        <li th:text="${arti.publishDate}"></li>
-    </div>
+    <div th:replace="publicItem/bar::topbar(currentUri='index')"></div>
+<!--    <div th:each="arti:${articles}">-->
+<!--        <li th:text="${arti.articleTitle}"></li>-->
+<!--        <li th:text="${arti.articleContent}"></li>-->
+<!--        <li th:text="${arti.author}"></li>-->
+<!--        <li th:text="${arti.publishDate}"></li>-->
+<!--    </div>-->
 </body>
 </html>

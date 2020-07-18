@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/bar.css}" rel="stylesheet">
+</head>
+<body>
+    <!-- 公用顶部栏 -->
+    <nav th:fragment="topbar" class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+        <div class="navbar-brand col-sm-3 col-md-2 mr-0" th:text="${session.loginUser}==null?'welcome':${session.loginUser}">welcome</div>
+        <input class="form-control form-control-dark w-50" type="text" placeholder="Search" aria-label="Search">
+        <ul class="navbar-nav px-3">
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" th:href="@{/admin.html}" th:if="${(currentUri=='index') and (not #strings.isEmpty(session.loginUser))}">管理</a>
+                <a class="nav-link" href="index.html" th:if="${currentUri=='manage'}">回首页</a>
+                <a class="nav-link" th:href="@{user/logout}" th:if="${not #strings.isEmpty(session.loginUser)}">注销</a>
+                <a class="nav-link" href="login.html" th:if="${#strings.isEmpty(session.loginUser)}">登录</a>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>

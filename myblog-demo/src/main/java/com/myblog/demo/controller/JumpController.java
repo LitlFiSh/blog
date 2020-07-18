@@ -53,7 +53,7 @@ public class JumpController {
     }
 
     //登录检测和跳转
-    @PostMapping(value = "/user/login")
+    @PostMapping("/user/login")
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
                         Map<String, Object> map, HttpSession session) {
@@ -65,5 +65,12 @@ public class JumpController {
             map.put("msg", "用户名或密码错误");
             return "login";
         }
+    }
+
+    //用户注销
+    @RequestMapping("/user/logout")
+    public String logout(HttpServletRequest request){
+        request.getSession().removeAttribute("loginUser");
+        return "redirect:/index.html";
     }
 }
