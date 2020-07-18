@@ -7,11 +7,11 @@ import javax.persistence.*;
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-    String author;
-    String articleTitle;
-    String articleContent;
-    String publishDate;
+    private Integer id;
+    private String author;
+    private String articleTitle;
+    private String articleContent;
+    private String publishDate;
 
     public Integer getId() {
         return id;

@@ -6,25 +6,29 @@
 </head>
 <body>
     <header>文章管理</header>
-    <p></p>
     <div>
         <ul>
-            <li><a th:href="/management/newArticle">添加文章</a> </li>
+            <li><a th:href="@{/arti}">添加文章</a> </li>
         </ul>
     </div>
-    <thead>
-        <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="arti:${articles}">
-            <td>[[${arti.articleTitle}}]]</td>
-            <td>[[${arti.author}]]</td>
-            <td>[[${arti.publishDate}]]</td>
-        </tr>
-    </tbody>
+    <div>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>author</th>
+                <th>Date</th>
+                <th>Op</th>
+            </tr>
+            <tr th:each="arti:${articles}">
+                <td>[[${arti.articleTitle}]]</td>
+                <td>[[${arti.author}]]</td>
+                <td>[[${arti.publishDate}]]</td>
+                <td>
+                    <button>edit</button>
+                    <button>delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
 </body>
 </html>

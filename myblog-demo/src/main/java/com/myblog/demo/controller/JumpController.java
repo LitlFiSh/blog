@@ -30,6 +30,7 @@ public class JumpController {
     public String getAllArticle(Model model){
         //List<Article> articles = articleRepository.findAll();
         //model.addAttribute("articles", articles);
+        //System.out.println("执行了一次跳转");
         return "index";
     }
 
@@ -40,9 +41,15 @@ public class JumpController {
         Object user = request.getSession().getAttribute("loginUser");
         //根据用户名获取文章
         List<Article> articles = articleRepository.findAllByAuthor(user.toString());
-        //System.out.println(articles.get(0).getArticleTitle());
         model.addAttribute("articles", articles);
         return "management/allArticle";
+    }
+
+    //点击添加文章的跳转
+    @GetMapping("/arti")
+    public String toAddArticle(){
+
+        return "management/newArticle";
     }
 
     //登录检测和跳转

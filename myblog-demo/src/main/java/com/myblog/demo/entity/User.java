@@ -7,9 +7,9 @@ import javax.persistence.*;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer id;
-    String username;
-    String password;
+    private Integer id;
+    private String username;
+    private String password;
 
     public Integer getId() {
         return id;
