@@ -3,16 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>管理</title>
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/css/bar.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/editormd/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/editormd/css/editormd.css}" />
 </head>
 <body>
-    <div th:replace="publicItem/bar::topba(currentUri='manage')"></div>
-    <header>添加文章</header>
+    <div th:replace="publicItem/bar::topbar(currentUri='manage')"></div>
     <div>
-        <ul>
-            <li><a th:href="@{/artis}">文章管理</a> </li>
-        </ul>
+        <div th:replace="publicItem/bar::sidebar(page='new')"></div>
     </div>
+    <form method="post" th:action="@{/article}">
+        <input type="text" name="articleTitle" placeholder="Title" required="required">
+        <div id="layout">
+            <div id="test-editormd">
+                <textarea style="display:none;" name="articleContent"></textarea>
+            </div>
+        </div>
+        <button type="submit">OK</button>
+    </form>
+    <script th:src="@{/editormd/js/jquery.min.js}"></script>
+    <script th:src="@{/editormd/js/editormd.min.js}"></script>
+    <script type="text/javascript">
+        var testEditor;
+
+        $(function() {
+            testEditor = editormd("test-editormd", {
+                width   : "90%",
+                height  : 640,
+                syncScrolling : "single",
+                path    : "../editormd/lib/"
+            });
+        });
+    </script>
 </body>
 </html>

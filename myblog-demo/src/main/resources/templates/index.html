@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
     <link th:href="@{/css/bar.css}" rel="stylesheet">
 </head>
 <body>
@@ -14,5 +13,23 @@
 <!--        <li th:text="${arti.author}"></li>-->
 <!--        <li th:text="${arti.publishDate}"></li>-->
 <!--    </div>-->
+    <div>
+        <div th:each="article:${articles}">
+            <ul>
+                <li>
+                    <a th:href="@{/arti(id=${article.id})}">[[${article.articleTitle}]]</a>
+                </li>
+                <li>[[${article.articleContent}]]</li>
+                <li>[[${article.publishDate}]]</li>
+                <li>[[${article.author}]]</li>
+            </ul>
+        </div>
+        <div>
+            <a th:href="@{/index(page=0, totalPage=${TotalPages})}">首页</a>
+            <a th:href="@{/index(page=${currentPage-1}, totalPage=${TotalPages})}">上一页</a>
+            <a th:href="@{/index(page=${currentPage+1}, totalPage=${TotalPages})}">下一页</a>
+            <a th:href="@{/index(page=${TotalPages-1})}">尾页</a>
+        </div>
+    </div>
 </body>
 </html>
