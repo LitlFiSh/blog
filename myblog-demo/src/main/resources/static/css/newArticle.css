@@ -1,0 +1,26 @@
+
+
+.layout{
+    padding-top: 60px;
+    width: 600px;
+    margin: auto;
+}
+
+.block{
+    margin-top: 10px;
+}
+
+.input-normal{
+    padding: 10px;
+    width: 100%;
+}
+
+.text-title{
+    font-size: 20px;
+}
+
+.input-content{
+    height: 600px;
+}
+
+

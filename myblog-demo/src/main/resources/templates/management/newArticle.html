@@ -3,16 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>管理</title>
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/css/bar.css}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link th:href="@{/css/blog.css}" rel="stylesheet">
+    <link th:href="@{/css/newArticle.css}" rel="stylesheet">
+    <link th:href="@{/dist/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link th:href="@{/assets/css/ie10-viewport-bug-workaround.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/navbar.css}" rel="stylesheet">
+    <link href="../../static/css/newArticle.css">
 </head>
 <body>
-    <div th:replace="publicItem/bar::topba(currentUri='manage')"></div>
-    <header>添加文章</header>
-    <div>
-        <ul>
-            <li><a th:href="@{/artis}">文章管理</a> </li>
-        </ul>
+    <div th:replace="publicItem/bar::topbar(currentUri='manage')"></div>
+<div  class="layout">
+    <div style="padding: 10px" >
+        <h1 class="blog-title">写博客</h1>
     </div>
+    <form>
+        <input class="form-control input-normal" style="font-size: 20px;height: 35px" placeholder="请输入标题">
+        <textarea class="form-control input-normal block" style="height: 600px" placeholder="请输入内容"></textarea>
+        <button class="btn btn-primary btn-block block" type="submit" style="width: 70px;margin-right: 5px;float: right">发布</button>
+    </form>
+
+</div>
+
+
 </body>
 </html>

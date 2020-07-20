@@ -3,8 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>管理</title>
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
-    <link th:href="@{/css/bar.css}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+<!--    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">-->
+<!--    <link th:href="@{/css/bar.css}" rel="stylesheet">-->
+    <link th:href="@{/dist/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link th:href="@{/assets/css/ie10-viewport-bug-workaround.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/navbar.css}" rel="stylesheet">
 </head>
 <body>
     <div th:replace="publicItem/bar::topbar(currentUri='manage')"></div>
@@ -14,8 +25,8 @@
             <li><a th:href="@{/arti}">添加文章</a> </li>
         </ul>
     </div>
-    <div>
-        <table>
+    <div style="width: 700px;padding-top: 30px;margin: auto">
+        <table class="table table-bordered table-striped">
             <tr>
                 <th>Title</th>
                 <th>author</th>
@@ -27,8 +38,8 @@
                 <td>[[${arti.author}]]</td>
                 <td>[[${arti.publishDate}]]</td>
                 <td>
-                    <button>edit</button>
-                    <button>delete</button>
+                    <a>编辑</a>
+                    <a style="color: red">删除</a>
                 </td>
             </tr>
         </table>
