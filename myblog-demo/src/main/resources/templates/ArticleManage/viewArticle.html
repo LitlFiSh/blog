@@ -7,8 +7,15 @@
     <link rel="stylesheet" th:href="@{/editormd/css/style.css}" />
 </head>
 <body>
-    <div th:text="${article.author}"></div>
+    <div th:replace="publicItem/bar::topbar(currentUri='index')"></div>
 
+    <div>
+        <li>作者：</li>
+        <div th:text="${article.author}"></div>
+        <li>发布时间：</li>
+        <div th:text="${article.publishDate}"></div>
+    </div>
+    <hr>
     <div>
         <!--文章主体内容-->
         <div id="doc-content">
@@ -16,7 +23,6 @@
             </textarea>
         </div>
     </div>
-    <div th:text="${article.publishDate}"></div>
 
 <script th:src="@{/editormd/lib/jquery.min.js}"></script>
 <script th:src="@{/editormd/lib/marked.min.js}"></script>

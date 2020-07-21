@@ -8,8 +8,6 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-<!--    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">-->
-<!--    <link th:href="@{/css/bar.css}" rel="stylesheet">-->
     <link th:href="@{/dist/css/bootstrap.min.css}" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -17,7 +15,7 @@
 
     <!-- Custom styles for this template -->
     <link th:href="@{/css/navbar.css}" rel="stylesheet">
-<!--    <link th:href="@{/css/bar.css}" rel="stylesheet">-->
+
 </head>
 <body>
     <div th:replace="publicItem/bar::topbar(currentUri='manage')"></div>
@@ -27,52 +25,36 @@
         </ul>
     </div>
     <div style="width: 700px;padding-top: 30px;margin: auto">
-        <table class="table table-bordered table-striped">
-            <tr>
-                <th>Title</th>
-                <th>author</th>
-                <th>Date</th>
-                <th>Op</th>
-            </tr>
-            <tr th:each="arti:${articles}">
-                <td>[[${arti.articleTitle}]]</td>
-                <td>[[${arti.author}]]</td>
-                <td>[[${arti.publishDate}]]</td>
-                <td>
-                    <a>编辑</a>
-                    <a style="color: red">删除</a>
-                </td>
-            </tr>
-        </table>
-<!--        <div th:replace="publicItem/bar::sidebar(page='all')"></div>-->
+        <!--        搜索框-->
         <div>
             <form th:action="@{/article/search}" method="get">
                 <input type="text" name="str" placeholder="Search sth." th:value="${searchBox}!=null?${searchBox}">
                 <button type="submit">Search</button>
             </form>
         </div>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>标题/th>
+                <th>作者</th>
+                <th>发布时间</th>
+                <th>操作</th>
+            </tr>
+            <tr th:each="article:${articles}">
+                <td>[[${article.articleTitle}]]</td>
+                <td>[[${article.author}]]</td>
+                <td>[[${article.publishDate}]]</td>
+                <td>
+                    <a th:href="@{/article/}+${article.id}">编辑</a>
+                    <button th:attr="del_uri=@{/article/}+${article.id}" class="del_btn" style="color: red">删除</button>
+                </td>
+            </tr>
+        </table>
+        <!--            这个表单用于删除按钮，无需显示-->
+        <form id="deleteForm" method="post">
+            <input type="hidden" name="_method" value="delete"/>
+        </form>
+
         <div>
-            <table>
-                <tr>
-                    <th>Title</th>
-                    <th>author</th>
-                    <th>Date</th>
-                    <th>Op</th>
-                </tr>
-                <tr th:each="article:${articles}">
-                    <td>[[${article.articleTitle}]]</td>
-                    <td>[[${article.author}]]</td>
-                    <td>[[${article.publishDate}]]</td>
-                    <td>
-                        <a th:href="@{/article/}+${article.id}">edit</a>
-                        <button th:attr="del_uri=@{/article/}+${article.id}" class="del_btn">delete</button>
-                    </td>
-                </tr>
-            </table>
-<!--            这个表单用于删除按钮，无需显示-->
-            <form id="deleteForm" method="post">
-                <input type="hidden" name="_method" value="delete"/>
-            </form>
             <div>
                 <a th:href="@{/manage(page=0, totalPage=${TotalPages})}">首页</a>
                 <a th:href="@{/manage(page=${currentPage-1}, totalPage=${TotalPages})}">上一页</a>

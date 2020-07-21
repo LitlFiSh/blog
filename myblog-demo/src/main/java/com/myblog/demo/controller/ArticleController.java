@@ -39,7 +39,7 @@ public class ArticleController {
         model.addAttribute("TotalPages", articleDatas.getTotalPages());
         model.addAttribute("currentPage", page);
 
-        return "management/allArticle";
+        return "ArticleManage/allArticle";
     }
 
     //首页点击文章标题显示文章详细内容
@@ -47,7 +47,7 @@ public class ArticleController {
     public String viewArticle(@RequestParam("id") Integer id, Model model){
         Article article = articleRepository.getOne(id);
         model.addAttribute("article", article);   //传递文章详细内容
-        return "management/viewArticle";
+        return "ArticleManage/viewArticle";
     }
 
     //添加文章
@@ -97,7 +97,7 @@ public class ArticleController {
         model.addAttribute("TotalPages", articleDatas.getTotalPages());
         model.addAttribute("currentPage", page);
         model.addAttribute("searchBox", str);   //将搜索的内容传回到页面并显示在搜索框中
-        return "management/allArticle";
+        return "ArticleManage/allArticle";
     }
 
     //首页显示所有文章
@@ -150,6 +150,6 @@ public class ArticleController {
     public String toEditArti(@PathVariable("id") Integer id, Model model){
         Article article = articleRepository.getOne(id);   //通过文章id获取文章详细内容
         model.addAttribute("article", article);   //将文章内容传给编辑文章页面进行回显
-        return "management/editArticle";
+        return "ArticleManage/editArticle";
     }
 }

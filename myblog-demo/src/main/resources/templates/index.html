@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
-<!--    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">-->
-<!--    <link th:href="@{/css/bar.css}" rel="stylesheet">-->
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -22,12 +20,6 @@
 <div style="height: 60px">
     <div th:replace="publicItem/bar::topbar(currentUri='index')"></div>
 </div>
-<!--    <div th:each="arti:${articles}">-->
-<!--        <li th:text="${arti.articleTitle}"></li>-->
-<!--        <li th:text="${arti.articleContent}"></li>-->
-<!--        <li th:text="${arti.author}"></li>-->
-<!--        <li th:text="${arti.publishDate}"></li>-->
-<!--    </div>-->
     <div style="width: 700px;margin: auto">
 
 <!--    搜索框-->
@@ -54,14 +46,6 @@
                 </div>
 
             </div>
-<!--            <ul>-->
-<!--                <li>-->
-<!--                    <a th:href="@{/arti(id=${article.id})}">[[${article.articleTitle}]]</a>-->
-<!--                </li>-->
-<!--                <li>[[${article.articleContent}]]</li>-->
-<!--                <li>[[${article.publishDate}]]</li>-->
-<!--                <li>[[${article.author}]]</li>-->
-<!--            </ul>-->
         </div>
         <div style="width: 250px;margin: auto">
             <nav aria-label="Page navigation" th:if="${TotalPages}>1">
