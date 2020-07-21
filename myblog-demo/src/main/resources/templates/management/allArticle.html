@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script language="JavaScript" th:src="@{/webjars/jquery/3.5.1/jquery.js}"></script>
 <head>
     <meta charset="UTF-8">
     <title>管理</title>
@@ -45,6 +46,12 @@
         </table>
 <!--        <div th:replace="publicItem/bar::sidebar(page='all')"></div>-->
         <div>
+            <form th:action="@{/article/search}" method="get">
+                <input type="text" name="str" placeholder="Search sth." th:value="${searchBox}!=null?${searchBox}">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <div>
             <table>
                 <tr>
                     <th>Title</th>
@@ -58,13 +65,13 @@
                     <td>[[${article.publishDate}]]</td>
                     <td>
                         <a th:href="@{/article/}+${article.id}">edit</a>
-                        <button th:attr="del_uri=@{/article/}+${article.id}" type="submit" class="del_btn">delete</button>
+                        <button th:attr="del_uri=@{/article/}+${article.id}" class="del_btn">delete</button>
                     </td>
                 </tr>
             </table>
 <!--            这个表单用于删除按钮，无需显示-->
             <form id="deleteForm" method="post">
-                <input type="hidden" name="_method" value="delete">
+                <input type="hidden" name="_method" value="delete"/>
             </form>
             <div>
                 <a th:href="@{/manage(page=0, totalPage=${TotalPages})}">首页</a>
@@ -74,9 +81,9 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript">
+<!--    删除操作表单的提交-->
+    <script>
         $(".del_btn").click(function(){
-            //删除
             $("#deleteForm").attr("action",$(this).attr("del_uri")).submit();
             return false;
         });

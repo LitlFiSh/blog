@@ -9,16 +9,13 @@
 <body>
     <div th:text="${article.author}"></div>
 
-<div>
-    <!--文章主体内容-->
-    <div id="doc-content">
-        <textarea id="append-test" style="display:none;" placeholder="markdown" th:text="${article.articleContent}">
-
-        </textarea>
+    <div>
+        <!--文章主体内容-->
+        <div id="doc-content">
+            <textarea id="append-test" style="display:none;" placeholder="markdown" th:text="${article.articleContent}">
+            </textarea>
+        </div>
     </div>
-
-</div>
-    <hr>
     <div th:text="${article.publishDate}"></div>
 
 <script th:src="@{/editormd/lib/jquery.min.js}"></script>
