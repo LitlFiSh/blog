@@ -16,22 +16,58 @@
 
     <!-- Custom styles for this template -->
     <link th:href="@{/css/navbar.css}" rel="stylesheet">
-    <link href="../../static/css/newArticle.css">
+    <link th:href="@{/css/newArticle.css}">
+    <link th:href="@{/css/bar.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/editormd/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/editormd/css/editormd.css}" />
 </head>
 <body>
+<div style="height: 60px">
     <div th:replace="publicItem/bar::topbar(currentUri='manage')"></div>
-<div  class="layout">
-    <div style="padding: 10px" >
-        <h1 class="blog-title">写博客</h1>
-    </div>
-    <form>
-        <input class="form-control input-normal" style="font-size: 20px;height: 35px" placeholder="请输入标题">
-        <textarea class="form-control input-normal block" style="height: 600px" placeholder="请输入内容"></textarea>
-        <button class="btn btn-primary btn-block block" type="submit" style="width: 70px;margin-right: 5px;float: right">发布</button>
-    </form>
-
 </div>
+<div >
+<!--    以下注释部分暂时不用-->
+<!--    <div style="padding: 10px" >-->
+<!--        <h1 class="blog-title">写博客</h1>-->
+<!--        <div th:replace="publicItem/bar::topbar(currentUri='manage')"></div>-->
+<!--    <div>-->
+<!--&lt;!&ndash;        <div th:replace="publicItem/bar::sidebar(page='new')"></div>&ndash;&gt;-->
+<!--    </div>-->
+<!--    <form>-->
+<!--        <input class="form-control input-normal" style="font-size: 20px;height: 35px" placeholder="请输入标题">-->
+<!--        <textarea class="form-control input-normal block" style="height: 600px" placeholder="请输入内容"></textarea>-->
+<!--        <button class="btn btn-primary btn-block block" type="submit" style="width: 70px;margin-right: 5px;float: right">发布</button>-->
+<!--    </form>-->
 
+<!--</div>-->
 
+<div style="margin: 20px">
+    <form method="post" th:action="@{/article}">
+            <div style="display: flex;margin-left: 70px">
+                <label>标题：</label>
+                <input class="form-control" style="width: 500px" type="text" name="articleTitle" placeholder="请输入标题" required="required">
+                <button class="btn " style="width: 70px;margin-left: 15px" type="submit">发布</button>
+            </div>
+        <div id="layout" style="margin-top: 15px">
+            <div id="test-editormd">
+                <textarea style="display:none;" name="articleContent" placeholder="请输入内容"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+    <script th:src="@{/editormd/js/jquery.min.js}"></script>
+    <script th:src="@{/editormd/js/editormd.min.js}"></script>
+    <script type="text/javascript">
+        var testEditor;
+
+        $(function() {
+            testEditor = editormd("test-editormd", {
+                width   : "90%",
+                height  : 640,
+                syncScrolling : "single",
+                path    : "../editormd/lib/"
+            });
+        });
+    </script>
 </body>
 </html>

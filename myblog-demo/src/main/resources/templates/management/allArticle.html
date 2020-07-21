@@ -16,10 +16,10 @@
 
     <!-- Custom styles for this template -->
     <link th:href="@{/css/navbar.css}" rel="stylesheet">
+<!--    <link th:href="@{/css/bar.css}" rel="stylesheet">-->
 </head>
 <body>
     <div th:replace="publicItem/bar::topbar(currentUri='manage')"></div>
-    <header>文章管理</header>
     <div>
         <ul>
             <li><a th:href="@{/arti}">添加文章</a> </li>
@@ -43,6 +43,43 @@
                 </td>
             </tr>
         </table>
+<!--        <div th:replace="publicItem/bar::sidebar(page='all')"></div>-->
+        <div>
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>author</th>
+                    <th>Date</th>
+                    <th>Op</th>
+                </tr>
+                <tr th:each="article:${articles}">
+                    <td>[[${article.articleTitle}]]</td>
+                    <td>[[${article.author}]]</td>
+                    <td>[[${article.publishDate}]]</td>
+                    <td>
+                        <a th:href="@{/article/}+${article.id}">edit</a>
+                        <button th:attr="del_uri=@{/article/}+${article.id}" type="submit" class="del_btn">delete</button>
+                    </td>
+                </tr>
+            </table>
+<!--            这个表单用于删除按钮，无需显示-->
+            <form id="deleteForm" method="post">
+                <input type="hidden" name="_method" value="delete">
+            </form>
+            <div>
+                <a th:href="@{/manage(page=0, totalPage=${TotalPages})}">首页</a>
+                <a th:href="@{/manage(page=${currentPage-1}, totalPage=${TotalPages})}">上一页</a>
+                <a th:href="@{/manage(page=${currentPage+1}, totalPage=${TotalPages})}">下一页</a>
+                <a th:href="@{/manage(page=${TotalPages-1})}">尾页</a>
+            </div>
+        </div>
     </div>
+    <script type="text/javascript">
+        $(".del_btn").click(function(){
+            //删除
+            $("#deleteForm").attr("action",$(this).attr("del_uri")).submit();
+            return false;
+        });
+    </script>
 </body>
 </html>
