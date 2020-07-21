@@ -19,8 +19,8 @@ public class MyConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/","/index.html","/index","/login.html","/user/login","/arti"
-                        ,"/**/*.css","/**/*.js","/**/*.png");
+                .excludePathPatterns("/","/index.html","/index","/login.html","/user/login","/arti","/search",
+                        "/**/*.css","/**/*.js","/**/*.png");
     }
 
     //静态资源路径

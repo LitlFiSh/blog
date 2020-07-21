@@ -12,6 +12,7 @@
     <div>
         <div th:replace="publicItem/bar::sidebar(page='new')"></div>
     </div>
+
     <form method="post" th:action="@{/article}">
         <input type="text" name="articleTitle" placeholder="Title" required="required">
         <div id="layout">
@@ -21,6 +22,7 @@
         </div>
         <button type="submit">OK</button>
     </form>
+
     <script th:src="@{/editormd/js/jquery.min.js}"></script>
     <script th:src="@{/editormd/js/editormd.min.js}"></script>
     <script type="text/javascript">

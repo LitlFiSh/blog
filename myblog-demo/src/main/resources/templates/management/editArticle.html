@@ -14,7 +14,10 @@
     </div>
 <form method="post" th:action="@{/article}">
     <input type="hidden" name="_method" value="put"/>
+<!--    这两个隐藏的输入框保存文章id和作者信息，并在提交时一起传递-->
     <input type="hidden" name="id" th:value="${article.id}">
+    <input type="hidden" name="author" th:value="${article.author}">
+
     <input type="text" name="articleTitle" placeholder="Title" required="required" th:value="${article.articleTitle}">
     <div id="layout">
         <div id="test-editormd">
@@ -23,6 +26,7 @@
     </div>
     <button type="submit">OK</button>
 </form>
+
 <script th:src="@{/editormd/js/jquery.min.js}"></script>
 <script th:src="@{/editormd/js/editormd.min.js}"></script>
 <script type="text/javascript">
