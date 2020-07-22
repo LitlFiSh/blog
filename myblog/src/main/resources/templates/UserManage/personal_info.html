@@ -21,18 +21,17 @@
 <div th:replace="publicItem/bar::topbar(currentUri='infoMana')"></div>
 <div style="width: 700px;padding-top: 30px;margin: auto">
     <div>
-        <p>用户信息</p>
         <form class="form-control-static" th:action="@{/userPwd}" method="post">
             <input type="hidden" name="_method" value="put"/>
-            <p>[[${session.loginUser}]]</p>
+            <p><span><label>用户名：</label></span>[[${session.loginUser}]]</p>
 
-            <p>原密码：</p>
+            <label>原密码：</label>
             <input type="password" name="oldPwd" class="form-control" required>
-            <p>新密码：</p>
+            <label>新密码：</label>
             <input type="password" name="newPwd" class="form-control" required>
-            <p>再次输入新密码：</p>
-            <input type="password" class="form-control" required>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">修改</button>
+            <label>再次输入新密码：</label>
+            <input type="password" class="form-control block-input" required>
+            <button class="btn btn-lg btn-primary" style="width: 70px;margin: auto" type="submit">修改</button>
         </form>
         <p style="color:red" th:text="${errorPwd}" th:if="${not #strings.isEmpty(errorPwd)}"></p>
     </div>

@@ -103,3 +103,7 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+.block-input{
+  margin-bottom: 15px;
+}
