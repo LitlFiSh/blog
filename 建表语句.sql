@@ -14,5 +14,5 @@ CREATE TABLE `user`(
 	PRIMARY KEY (`id`)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO `article` VALUES ('0','superAdmin','The zero article','This is the content of the zero article.','2020-7-14')
+INSERT INTO `article` VALUES ('0','superAdmin','The zero article','This is the content of the zero article.','2020-7-14 00:00:00')
 INSERT INTO `user` VALUES ('0','superAdmin','123456')

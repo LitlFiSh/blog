@@ -37,8 +37,9 @@ public class JumpController {
     //用户注销
     @RequestMapping("/user/logout")
     public String logout(HttpServletRequest request){
-        request.getSession().removeAttribute("loginUser");
-        return "redirect:/index.html";
+        //request.getSession().removeAttribute("loginUser");
+        request.getSession().invalidate();
+        return "redirect:/index";
     }
 
 

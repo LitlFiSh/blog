@@ -28,10 +28,11 @@ public class UserController {
                                HttpServletRequest request, Map<String, Object> map){
         String username = request.getSession().getAttribute("loginUser").toString();
         User user = userRepository.findByUsername(username);
-        if(oldPwd == user.getPassword()) {
+        if(user.getPassword().equals(oldPwd)) {
             user.setPassword(newPwd);
             userRepository.save(user);
-            return "redirect:/user/logout";   //修改密码成功，注销用户
+            map.put("msg","请重新登录");
+            return "redirect:/login.html";   //修改密码成功，注销用户
         }
         else {
             map.put("errorPwd","密码错误");
@@ -43,21 +44,21 @@ public class UserController {
     @PostMapping("/user")
     public String addUser(User user){
         userRepository.save(user);
-        return "redirect:/UserManage/allUser";   //重定向到管理用户页面
+        return "redirect:/userManage";   //重定向到管理用户页面
     }
 
     //管理员删除用户
     @DeleteMapping("/user/{id}")
     public String deleteUser(@PathVariable("id") Integer id){
         userRepository.deleteById(id);
-        return "redirect:/UserManage/allUser";   //重定向到管理用户界面
+        return "redirect:/userManage";   //重定向到管理用户界面
     }
 
     //管理员修改用户
     @PutMapping("/user")
     public String updateUser(User user){
         userRepository.save(user);
-        return "redirect:/UserManage/allUser";   //重定向到管理用户界面
+        return "redirect:/userManage";   //重定向到管理用户界面
     }
 
     //修改密码页面跳转
@@ -69,7 +70,7 @@ public class UserController {
     //添加用户的跳转
     @GetMapping("/newUser")
     public String newUser(){
-        return "newUser";   //跳转到添加用户页面
+        return "UserManage/newUser";   //跳转到添加用户页面
     }
 
     //修改用户的跳转
@@ -98,6 +99,6 @@ public class UserController {
         model.addAttribute("TotalPages", userDatas.getTotalPages());
         model.addAttribute("currentPage", page);
 
-        return "UserMAnage/allUser";   //跳转到管理用户页面
+        return "UserManage/allUser";   //跳转到管理用户页面
     }
 }

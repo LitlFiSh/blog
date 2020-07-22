@@ -22,17 +22,19 @@
 <div style="width: 700px;padding-top: 30px;margin: auto">
     <div>
         <p>用户信息</p>
-        <form class="form-control-static" th:action="@{/user}" method="post">
-            <label class="sr-only" >[[${session.loginUser}]]</label>
-            <label class="sr-only">原密码</label>
+        <form class="form-control-static" th:action="@{/userPwd}" method="post">
+            <input type="hidden" name="_method" value="put"/>
+            <p>[[${session.loginUser}]]</p>
+
+            <p>原密码：</p>
             <input type="password" name="oldPwd" class="form-control" required>
-            <label class="sr-only">新密码</label>
+            <p>新密码：</p>
             <input type="password" name="newPwd" class="form-control" required>
-            <label class="sr-only">再次输入新密码</label>
+            <p>再次输入新密码：</p>
             <input type="password" class="form-control" required>
             <button class="btn btn-lg btn-primary btn-block" type="submit">修改</button>
         </form>
-        <p tyle="color:red" th:text="${errorPwd}" th:if="${not #strings.isEmpty(errorPwd)}"></p>
+        <p style="color:red" th:text="${errorPwd}" th:if="${not #strings.isEmpty(errorPwd)}"></p>
     </div>
 </div>
 </body>

@@ -27,7 +27,7 @@
 </div>
     <div style="width: 80%;padding-top: 30px;margin: auto">
         <form method="post" th:action="@{/article}">
-            <input  type="hidden" name="_method" value="put"/>
+            <input type="hidden" name="_method" value="put"/>
             <!--    隐藏的输入框保存文章id和作者信息和发布时间，并在提交时一起传递-->
             <input type="hidden" name="id" th:value="${article.id}">
             <input type="hidden" name="author" th:value="${article.author}">

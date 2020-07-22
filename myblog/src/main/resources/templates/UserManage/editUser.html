@@ -24,11 +24,12 @@
         <p>修改用户</p>
         <form class="form-control-static" th:action="@{/user}" method="post">
             <input type="hidden" name="_method" value="put"/>
-            <label class="sr-only" >UserName</label>
+            <input type="hidden" name="id" th:value="${user.id}">
+            <p>UserName</p>
             <input type="text" name="username" class="form-control" placeholder="UserName" th:value="${user.username}">
-            <label for="inputPassword" class="sr-only">Password</label>
+            <p>Password</p>
             <input type="text" name="password" id="inputPassword" class="form-control" placeholder="Password" th:value="${user.password}">
-            <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">修改</button>
         </form>
     </div>
 </div>
