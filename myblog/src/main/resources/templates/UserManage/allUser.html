@@ -20,7 +20,7 @@
 <body>
 <div th:replace="publicItem/bar::topbar(currentUri='manage')"></div>
 <div style="width: 700px;padding-top: 30px;margin: auto">
-
+    <li><a th:href="@{/newUser}">添加用户</a></li>
     <table class="table table-bordered table-striped">
         <tr>
             <th>用户名</th>
@@ -29,7 +29,7 @@
         <tr th:each="user:${users}">
             <td>[[${user.username}]]</td>
             <td>
-                <a th:href="@{/edituser/}+${user.id}">编辑</a>
+                <a th:href="@{/editUser/}+${user.id}">编辑</a>
                 <button th:attr="del_uri=@{/user/}+${user.id}" class="del_btn" style="color: red">删除</button>
             </td>
         </tr>

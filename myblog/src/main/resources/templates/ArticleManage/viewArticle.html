@@ -22,8 +22,11 @@
     <link rel="stylesheet" th:href="@{/editormd/css/editormd.css}" />
 </head>
 <body>
-    <div th:replace="publicItem/bar::topbar(currentUri='index')"></div>
-    <div style="width: 700px;padding-top: 30px;margin: auto">
+    <div style="height: 60px">
+        <div th:replace="publicItem/bar::topbar(currentUri='index')"></div>
+    </div>
+
+    <div style="width: 700px;margin: auto">
         <div>
             <li>作者：</li>
             <div th:text="${article.author}"></div>
