@@ -47,10 +47,10 @@
                     页，共<span th:text="${users.totalElements}"></span>
                     条记录
                 </div>
-                <a th:href="@{/index}">首页</a>
-                <a th:href="@{/index(page = ${users.hasPrevious()} ? ${users.getNumber() } : 1)}">上一页</a>
-                <a th:href="@{/index(page = ${users.hasNext()} ? ${users.getNumber()} + 2 : ${users.totalPages})}">下一页</a>
-                <a th:href="@{/index(page = ${users.totalPages})}">尾页</a>
+                <a th:href="@{/userManage}">首页</a>
+                <a th:href="@{/userManage(page = ${users.hasPrevious()} ? ${users.getNumber() } : 1)}">上一页</a>
+                <a th:href="@{/userManage(page = ${users.hasNext()} ? ${users.getNumber()} + 2 : ${users.totalPages})}">下一页</a>
+                <a th:href="@{/userManage(page = ${users.totalPages})}">尾页</a>
             </ul>
         </nav>
     </div>
