@@ -30,7 +30,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li th:class="${currentUri}=='index'?'active':''">
-                        <a th:href="@{/index}" th:if="${not #strings.isEmpty(session.loginUser)}">首页</a></li>
+                        <a th:href="@{/index}">首页</a></li>
                     <li  th:class="${currentUri}=='UserMana'?'active':''">
                         <a th:href="@{/userManage}" th:if="${not #strings.isEmpty(session.admin)}">用户管理</a></li>
                     <li>

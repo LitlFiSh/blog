@@ -23,11 +23,11 @@
     <div>
         <p>添加用户</p>
         <form class="form-control-static" th:action="@{/user}" method="post">
-            <label class="sr-only" >UserName</label>
+            <p>UserName</p>
             <input type="text" name="username" class="form-control" placeholder="UserName" required>
-            <label for="inputPassword" class="sr-only">Password</label>
+            <p>Password</p>
             <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">添加</button>
+            <button class="btn btn-lg btn-primary btn-block" style="width: 70px;margin: auto" type="submit">添加</button>
         </form>
     </div>
 </div>

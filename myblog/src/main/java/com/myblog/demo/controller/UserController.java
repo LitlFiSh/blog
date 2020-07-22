@@ -32,7 +32,7 @@ public class UserController {
             user.setPassword(newPwd);
             userRepository.save(user);
             map.put("msg","请重新登录");
-            return "redirect:/login.html";   //修改密码成功，注销用户
+            return "login";   //修改密码成功，注销用户
         }
         else {
             map.put("errorPwd","密码错误");

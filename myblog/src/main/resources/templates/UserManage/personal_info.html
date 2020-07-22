@@ -28,13 +28,25 @@
             <label>原密码：</label>
             <input type="password" name="oldPwd" class="form-control" required>
             <label>新密码：</label>
-            <input type="password" name="newPwd" class="form-control" required>
+            <input id="pwd1" type="password" name="newPwd" class="form-control" required>
             <label>再次输入新密码：</label>
-            <input type="password" class="form-control block-input" required>
-            <button class="btn btn-lg btn-primary" style="width: 70px;margin: auto" type="submit">修改</button>
+            <input id="pwd2" type="password" name="newPwd2" class="form-control block-input" required>
+            <button id="btn" class="btn btn-lg btn-primary" style="width: 70px;margin: auto">修改</button>
         </form>
         <p style="color:red" th:text="${errorPwd}" th:if="${not #strings.isEmpty(errorPwd)}"></p>
     </div>
 </div>
+<script type="text/javascript">
+    $("#btn").click(function(){
+        var pwd1 = $("input[name='newPwd']").val();
+        var pwd2 = $("input[name='newPwd2']").val();
+        if(pwd1 != pwd2) {
+            alert("两次密码不一致");
+            $("input[name='newPwd']").val("");
+            $("input[name='newPwd2']").val("");
+            return false;
+        }
+    });
+</script>
 </body>
 </html>

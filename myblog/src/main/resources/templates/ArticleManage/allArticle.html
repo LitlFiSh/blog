@@ -73,8 +73,9 @@
 <!--    删除操作表单的提交-->
     <script>
         $(".del_btn").click(function(){
-            $("#deleteForm").attr("action",$(this).attr("del_uri")).submit();
-            return false;
+            if(confirm("确认要删除吗？"))
+                $("#deleteForm").attr("action",$(this).attr("del_uri")).submit();
+            else return false;
         });
     </script>
 </body>
