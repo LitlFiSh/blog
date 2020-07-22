@@ -44,7 +44,7 @@
                 <td>[[${article.updateDate}]]</td>
                 <td>
                     <a th:href="@{/article/}+${article.id}">编辑</a>
-                    <a th:attr="del_uri=@{/article/}+${article.id}"  style="color: red">删除</a>
+                    <button th:attr="del_uri=@{/article/}+${article.id}" class="del_btn" style="color: red">删除</button>
                 </td>
             </tr>
         </table>
