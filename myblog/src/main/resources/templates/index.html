@@ -31,7 +31,7 @@
     </div>
 <!--    -------->
     <div>
-        <div th:each="article:${articles}">
+        <div th:each="article:${articles.getContent()}">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <p style="font-size: 30px" >[[${article.articleTitle}]]</p>
@@ -40,7 +40,7 @@
                         <span>[[${article.publishDate}]]</span>
                     </p>
                     <p style="-webkit-line-clamp:3;-webkit-box-orient: vertical;overflow: hidden;">
-                        [[${article.articleContent}]]
+<!--                        [[${article.articleContent}]]-->
                         <span><a th:href="@{/arti(id=${article.id})}">查看全文</a></span>
                     </p>
                 </div>
@@ -48,15 +48,22 @@
             </div>
         </div>
         <div style="width: 250px;margin: auto">
-            <nav aria-label="Page navigation" th:if="${TotalPages}>1">
+            <nav aria-label="Page navigation">
                 <ul class="pagination">
-                    <li ><a th:href="@{/index(page=0, totalPage=${TotalPages})}">首页 </a></li>
-                    <li th:if="${currentPage}-1>=0"><a th:href="@{/index(page=${currentPage-1}, totalPage=${TotalPages})}">上一页</a></li>
-                    <li th:if="${TotalPages}-${currentPage}>=2"><a th:href="@{/index(page=${currentPage+1}, totalPage=${TotalPages})}">下一页</a></li>
-                    <li ><a th:href="@{/index(page=${TotalPages-1})}">尾页</a></li>
+                    <div>当前<span th:text="${articles.getNumber()} + 1"></span>
+                        页,总<span th:text="${articles.totalPages}"></span>
+                        页，共<span th:text="${articles.totalElements}"></span>
+                        条记录
+                    </div>
+                    <a th:href="@{/index}">首页</a>
+                    <a th:href="@{/index(page = ${articles.hasPrevious()} ? ${articles.getNumber() } : 1)}">上一页</a>
+                    <a th:href="@{/index(page = ${articles.hasNext()} ? ${articles.getNumber()} + 2 : ${articles.totalPages})}">下一页</a>
+                    <a th:href="@{/index(page = ${articles.totalPages})}">尾页</a>
+
                 </ul>
             </nav>
         </div>
+    </div>
     </div>
 </body>
 </html>

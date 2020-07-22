@@ -13,5 +13,5 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
     //首页通过标题查找文章
     Page<Article> findAllByArticleTitleLike(String str, Pageable pageable);
     //管理页通过作者和标题查找文章
-    Page<Article> findAllByAuthorAndArticleContentIsLike(String author, String str, Pageable pageable);
+    Page<Article> findAllByAuthorAndArticleTitleLike(String author, String str, Pageable pageable);
 }

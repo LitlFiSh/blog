@@ -23,22 +23,14 @@ public class ArticleController {
 
     //登录后的跳转，跳转至显示用户的所有文章
     @GetMapping("/allArti")
-    public String allArticle(Model model, Integer page, Integer totalPage, HttpServletRequest request){
-        if(page == null)   //第一次执行时page没有初值，所以将初值设为0
-            page = 0;
-        if (page == -1)   //当page为第一页时点击上一页会传回page=-1，所以将其设回第一页
-            page++;
-        if (page == totalPage)   //同上，将page设置回最后一页
-            page--;
-        Sort sort = Sort.by(Sort.Direction.DESC, "id");   //通过id降序排序
-        Pageable pageable = PageRequest.of(page, 10, sort);   //page：当前页、10：每一页显示的数量、sort：排序方法
+    public String allArticle(Model model, Integer page, HttpServletRequest request){
+        if(page == null)
+            page = 1;
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        Pageable pageable = PageRequest.of(page-1, 10, sort);
         Page<Article> articleDatas = articleRepository.findAllByAuthor(
                 request.getSession().getAttribute("loginUser").toString(), pageable);
-        List<Article> articles = articleDatas.getContent();   //当前页面中应显示的文章
-        model.addAttribute("articles", articles);
-        model.addAttribute("TotalPages", articleDatas.getTotalPages());
-        model.addAttribute("currentPage", page);
-
+        model.addAttribute("articles", articleDatas);
         return "ArticleManage/allArticle";
     }
 
@@ -80,62 +72,42 @@ public class ArticleController {
 
     //管理页面查找文章
     @GetMapping("/article/search")
-    public String searchArticle(@RequestParam("str") String str, Model model, Integer page,
-                                Integer totalPage, HttpServletRequest request){
+    public String searchArticle(@RequestParam("str") String str, Model model,
+                                Integer page, HttpServletRequest request){
         String user = request.getSession().getAttribute("loginUser").toString();
         if(page == null)
-            page = 0;
-        if (page == -1)
-            page++;
-        if (page == totalPage)
-            page--;
+            page = 1;
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
-        Pageable pageable = PageRequest.of(page, 10, sort);
+        Pageable pageable = PageRequest.of(page-1, 10, sort);
         //传入的参数中 user表示作者、"%"+str+"%"表示模糊搜索含str内容的文章标题
-        Page<Article> articleDatas = articleRepository.findAllByAuthorAndArticleContentIsLike(user, "%"+str+"%", pageable);
-        List<Article> articles = articleDatas.getContent();
-        model.addAttribute("articles", articles);
-        model.addAttribute("TotalPages", articleDatas.getTotalPages());
-        model.addAttribute("currentPage", page);
-        model.addAttribute("searchBox", str);   //将搜索的内容传回到页面并显示在搜索框中
+        Page<Article> articleDatas = articleRepository.findAllByAuthorAndArticleTitleLike(user, "%"+str+"%", pageable);
+        model.addAttribute("articles", articleDatas);
+        model.addAttribute("searchBox", str);
         return "ArticleManage/allArticle";
     }
 
     //首页显示所有文章
-    @GetMapping({"/","index","index.html"})
-    public String showAllArti(Model model, Integer page, Integer totalPage){
+    @GetMapping({"/","/index","/index.html"})
+    public String showAllArti(Model model, Integer page){
         if(page == null)
-            page = 0;
-        if (page == -1)
-            page++;
-        if (page == totalPage)
-            page--;
+            page = 1;
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
-        Pageable pageable = PageRequest.of(page, 10, sort);
+        Pageable pageable = PageRequest.of(page-1, 10, sort);
         Page<Article> articleDatas = articleRepository.findAll(pageable);
-        List<Article> articles = articleDatas.getContent();
-        model.addAttribute("articles", articles);
-        model.addAttribute("TotalPages", articleDatas.getTotalPages());
-        model.addAttribute("currentPage", page);
+        model.addAttribute("articles", articleDatas);
         return "index";
     }
+
     //首页文章查找
     @GetMapping("/search")
     public String searchResult(Model model, @RequestParam("str") String str,
-                               Integer page, Integer totalPage, HttpServletRequest request){
+                               Integer page){
         if(page == null)
-            page = 0;
-        if (page == -1)
-            page++;
-        if (page == totalPage)
-            page--;
+            page = 1;
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
-        Pageable pageable = PageRequest.of(page, 10, sort);
+        Pageable pageable = PageRequest.of(page-1, 10, sort);
         Page<Article> articleDatas = articleRepository.findAllByArticleTitleLike("%"+str+"%", pageable);
-        List<Article> articles = articleDatas.getContent();
-        model.addAttribute("articles", articles);
-        model.addAttribute("TotalPages", articleDatas.getTotalPages());
-        model.addAttribute("currentPage", page);
+        model.addAttribute("articles", articleDatas);
         model.addAttribute("searchBox", str);
         return "index";
     }

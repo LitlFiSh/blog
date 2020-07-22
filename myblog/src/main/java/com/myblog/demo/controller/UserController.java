@@ -83,22 +83,14 @@ public class UserController {
 
     //跳转到管理用户页面
     @GetMapping("/userManage")
-    public String allUser(Model model, Integer page, Integer totalPage, HttpServletRequest request){
+    public String allUser(Model model, Integer page, HttpServletRequest request){
         if(page == null)
-            page = 0;
-        if (page == -1)
-            page++;
-        if (page == totalPage)
-            page--;
+            page = 1;
         String username = request.getSession().getAttribute("loginUser").toString();
         Sort sort = Sort.by(Sort.Direction.DESC, "id");
-        Pageable pageable = PageRequest.of(page, 10, sort);
+        Pageable pageable = PageRequest.of(page-1, 10, sort);
         Page<User> userDatas = userRepository.findAllByUsernameNot(username, pageable);
-        List<User> users = userDatas.getContent();
-        model.addAttribute("users", users);
-        model.addAttribute("TotalPages", userDatas.getTotalPages());
-        model.addAttribute("currentPage", page);
-
+        model.addAttribute("users", userDatas);
         return "UserManage/allUser";   //跳转到管理用户页面
     }
 }
