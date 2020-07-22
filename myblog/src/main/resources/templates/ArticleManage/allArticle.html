@@ -18,13 +18,15 @@
 
 </head>
 <body>
-    <div th:replace="publicItem/bar::topbar(currentUri='manage')"></div>
-    <div style="width: 700px;padding-top: 30px;margin: auto">
+<div style="height: 40px">
+    <div th:replace="publicItem/bar::topbar(currentUri='artiMana')"></div>
+</div>
+    <div style="width: 700px;margin: auto">
         <!--        搜索框-->
-        <div>
-            <form th:action="@{/article/search}" method="get">
-                <input type="text" name="str" placeholder="Search sth." th:value="${searchBox}!=null?${searchBox}">
-                <button type="submit">Search</button>
+        <div style="margin-bottom: 15px">
+            <form style="display: flex" th:action="@{/article/search}" method="get">
+                <input class="form-control" style="width: 70%" type="text" name="str" placeholder="Search..." th:value="${searchBox}!=null?${searchBox}">
+                <button class="btn btn-primary btn-block" style="width: 70px;margin-left: 10px" type="submit">Search</button>
             </form>
         </div>
         <table class="table table-bordered table-striped">
@@ -50,15 +52,25 @@
         <form id="deleteForm" method="post">
             <input type="hidden" name="_method" value="delete"/>
         </form>
-
-        <div>
-            <div>
-                <a th:href="@{/manage(page=0, totalPage=${TotalPages})}">首页</a>
-                <a th:href="@{/manage(page=${currentPage-1}, totalPage=${TotalPages})}">上一页</a>
-                <a th:href="@{/manage(page=${currentPage+1}, totalPage=${TotalPages})}">下一页</a>
-                <a th:href="@{/manage(page=${TotalPages-1})}">尾页</a>
-            </div>
+<!--分页-->
+        <div style="width: 250px;margin: auto">
+            <nav aria-label="Page navigation" th:if="${TotalPages}>1">
+                <ul class="pagination">
+                    <li ><a th:href="@{/index(page=0, totalPage=${TotalPages})}">首页 </a></li>
+                    <li th:if="${currentPage}-1>=0"><a th:href="@{/index(page=${currentPage-1}, totalPage=${TotalPages})}">上一页</a></li>
+                    <li th:if="${TotalPages}-${currentPage}>=2"><a th:href="@{/index(page=${currentPage+1}, totalPage=${TotalPages})}">下一页</a></li>
+                    <li ><a th:href="@{/index(page=${TotalPages-1})}">尾页</a></li>
+                </ul>
+            </nav>
         </div>
+<!--        <div>-->
+<!--            <div>-->
+<!--                <a th:href="@{/manage(page=0, totalPage=${TotalPages})}">首页</a>-->
+<!--                <a th:href="@{/manage(page=${currentPage-1}, totalPage=${TotalPages})}">上一页</a>-->
+<!--                <a th:href="@{/manage(page=${currentPage+1}, totalPage=${TotalPages})}">下一页</a>-->
+<!--                <a th:href="@{/manage(page=${TotalPages-1})}">尾页</a>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 <!--    删除操作表单的提交-->
     <script>

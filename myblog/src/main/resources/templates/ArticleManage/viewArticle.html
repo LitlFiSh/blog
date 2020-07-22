@@ -20,16 +20,18 @@
     <link th:href="@{/css/bar.css}" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/editormd/css/style.css}" />
     <link rel="stylesheet" th:href="@{/editormd/css/editormd.css}" />
+    <link rel="stylesheet" th:href="@{/css/blog.css}">
 </head>
 <body>
-    <div th:replace="publicItem/bar::topbar(currentUri='index')"></div>
-    <div style="width: 700px;padding-top: 30px;margin: auto">
-        <div>
-            <li>作者：</li>
-            <div th:text="${article.author}"></div>
-            <li>发布时间：</li>
-            <div th:text="${article.publishDate}"></div>
-        </div>
+<div style="height: 60px">
+    <div th:replace="publicItem/bar::topbar(currentUri='ArtiMana')"></div>
+</div>
+<div style="width: 700px;margin: auto">
+    <div class="blog-post" >
+        <h2 class="blog-post-title" th:text="${article.articleTitle}"></h2>
+        <p class="blog-post-meta" >[[${article.publishDate}]] 作者：
+            <span >[[${article.author}]]</span>
+        </p>
         <hr>
         <div>
             <!--文章主体内容-->
@@ -39,6 +41,9 @@
             </div>
         </div>
     </div>
+</div>
+
+
 
 <script th:src="@{/editormd/lib/jquery.min.js}"></script>
 <script th:src="@{/editormd/lib/marked.min.js}"></script>

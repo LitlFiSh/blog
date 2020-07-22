@@ -17,16 +17,16 @@
     <link th:href="@{/css/navbar.css}" rel="stylesheet">
 </head>
 <body>
-<div style="height: 60px">
+<div style="height: 40px">
     <div th:replace="publicItem/bar::topbar(currentUri='index')"></div>
 </div>
     <div style="width: 700px;margin: auto">
 
 <!--    搜索框-->
-    <div>
-        <form th:action="@{/search}" method="get">
-            <input type="text" name="str" placeholder="Search sth." th:value="${searchBox}!=null?${searchBox}">
-            <button type="submit">Search</button>
+    <div style="margin-bottom: 15px">
+        <form style="display: flex" th:action="@{/search}" method="get">
+            <input class="form-control" style="width: 70%" type="text" name="str" placeholder="Search..." th:value="${searchBox}!=null?${searchBox}">
+            <button class="btn btn-primary btn-block" style="width: 70px;margin-left: 10px" type="submit">Search</button>
         </form>
     </div>
 <!--    -------->
