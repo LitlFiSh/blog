@@ -61,11 +61,10 @@
                         页，共<span th:text="${articles.totalElements}"></span>
                         条记录
                     </div>
-                    <a th:href="@{/article/search}">首页</a>
-                    <a th:href="@{/article/search(page = ${articles.hasPrevious()} ? ${articles.getNumber() } : 1)}">上一页</a>
-                    <a th:href="@{/article/search(page = ${articles.hasNext()} ? ${articles.getNumber()} + 2 : ${articles.totalPages})}">下一页</a>
-                    <a th:href="@{/article/search(page = ${articles.totalPages})}">尾页</a>
-
+                    <a th:href="@{/allArti}">首页</a>
+                    <a th:href="@{/allArti(page = ${articles.hasPrevious()} ? ${articles.getNumber() } : 1)}">上一页</a>
+                    <a th:href="@{/allArti(page = ${articles.hasNext()} ? ${articles.getNumber()} + 2 : ${articles.totalPages})}">下一页</a>
+                    <a th:href="@{/allArti(page = ${articles.totalPages})}">尾页</a>
                 </ul>
             </nav>
         </div>
