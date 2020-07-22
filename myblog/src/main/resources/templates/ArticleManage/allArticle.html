@@ -19,11 +19,6 @@
 </head>
 <body>
     <div th:replace="publicItem/bar::topbar(currentUri='manage')"></div>
-    <div>
-        <ul>
-            <li><a th:href="@{/arti}">添加文章</a> </li>
-        </ul>
-    </div>
     <div style="width: 700px;padding-top: 30px;margin: auto">
         <!--        搜索框-->
         <div>
@@ -34,15 +29,17 @@
         </div>
         <table class="table table-bordered table-striped">
             <tr>
-                <th>标题/th>
+                <th>标题</th>
                 <th>作者</th>
                 <th>发布时间</th>
+                <th>最后修改时间</th>
                 <th>操作</th>
             </tr>
             <tr th:each="article:${articles}">
                 <td>[[${article.articleTitle}]]</td>
                 <td>[[${article.author}]]</td>
                 <td>[[${article.publishDate}]]</td>
+                <td>[[${article.updateDate}]]</td>
                 <td>
                     <a th:href="@{/article/}+${article.id}">编辑</a>
                     <button th:attr="del_uri=@{/article/}+${article.id}" class="del_btn" style="color: red">删除</button>

@@ -25,6 +25,8 @@ public class JumpController {
         User user = userRepository.findByUsername(username);
         if (user.getPassword().equals(password)) {
             session.setAttribute("loginUser", username);
+            if(user.getUsername().equals("superAdmin"))
+                session.setAttribute("admin", "true");  //判断是否为超级管理员
             return "redirect:/allArti";   //登录后交由ArticleController处理请求
         } else {
             map.put("msg", "用户名或密码错误");

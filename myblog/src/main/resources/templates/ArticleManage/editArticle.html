@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link th:href="@{/css/blog.css}" rel="stylesheet">
+    <link th:href="@{/css/newArticle.css}" rel="stylesheet">
+    <link th:href="@{/dist/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link th:href="@{/assets/css/ie10-viewport-bug-workaround.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/navbar.css}" rel="stylesheet">
+    <link th:href="@{/css/newArticle.css}">
+    <link th:href="@{/css/bar.css}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/editormd/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/editormd/css/editormd.css}" />
+</head>
+<body>
+    <div th:replace="publicItem/bar::topbar(currentUri='manage')"></div>
+    <div style="width: 700px;padding-top: 30px;margin: auto">
+        <form method="post" th:action="@{/article}">
+            <input type="hidden" name="_method" value="put"/>
+            <!--    隐藏的输入框保存文章id和作者信息和发布时间，并在提交时一起传递-->
+            <input type="hidden" name="id" th:value="${article.id}">
+            <input type="hidden" name="author" th:value="${article.author}">
+            <input type="hidden" name="publishDate" th:value="${article.publishDate}">
+
+            <input type="text" name="articleTitle" placeholder="Title" required="required" th:value="${article.articleTitle}">
+            <button class="btn " style="width: 70px;margin-left: 15px" type="submit">确认</button>
+            <div id="layout">
+                <div id="test-editormd">
+                    <textarea style="display:none;" name="articleContent" th:text="${article.articleContent}"></textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+
+<script th:src="@{/editormd/js/jquery.min.js}"></script>
+<script th:src="@{/editormd/js/editormd.min.js}"></script>
+<script type="text/javascript">
+    var testEditor;
+
+    $(function() {
+        testEditor = editormd("test-editormd", {
+            width   : "90%",
+            height  : 640,
+            syncScrolling : "single",
+            path    : "../editormd/lib/"
+        });
+    });
+</script>
+</body>
+</html>

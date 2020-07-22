@@ -55,6 +55,7 @@ public class ArticleController {
     public String addArticle(Article article, HttpServletRequest request) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         article.setPublishDate(df.format(new Date()));   // new Date()为获取当前系统时间
+        article.setUpdateDate(df.format(new Date()));
         article.setAuthor(request.getSession().getAttribute("loginUser").toString());   //当前登录的用户即为文章作者
         articleRepository.save(article);   //保存到数据库中、其中article.id为空，即文章在数据库中不存在，进行添加操作
         return "redirect:/allArti";
@@ -65,7 +66,7 @@ public class ArticleController {
     public String editArticle(Article article, HttpServletRequest request){
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         // new Date()为获取当前系统时间
-        article.setPublishDate(df.format(new Date()));
+        article.setUpdateDate(df.format(new Date()));
         articleRepository.save(article);   //更新数据库内容，id和author已经从页面传回，进行更新操作
         return "redirect:/allArti";
     }
@@ -142,7 +143,7 @@ public class ArticleController {
     //公共侧边栏中添加文章的跳转
     @GetMapping("/newArti")
     public String toNewArti(){
-        return "management/newArticle";
+        return "ArticleManage/newArticle";
     }
 
     //修改文章跳转

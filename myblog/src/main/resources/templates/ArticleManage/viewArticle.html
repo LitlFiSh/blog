@@ -3,24 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${article.articleTitle}"></title>
-    <link rel="stylesheet" th:href="@{/editormd/css/editormd.preview.css}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link th:href="@{/css/blog.css}" rel="stylesheet">
+    <link th:href="@{/css/newArticle.css}" rel="stylesheet">
+    <link th:href="@{/dist/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link th:href="@{/assets/css/ie10-viewport-bug-workaround.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/navbar.css}" rel="stylesheet">
+    <link th:href="@{/css/newArticle.css}">
+    <link th:href="@{/css/bar.css}" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/editormd/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/editormd/css/editormd.css}" />
 </head>
 <body>
     <div th:replace="publicItem/bar::topbar(currentUri='index')"></div>
-
-    <div>
-        <li>作者：</li>
-        <div th:text="${article.author}"></div>
-        <li>发布时间：</li>
-        <div th:text="${article.publishDate}"></div>
-    </div>
-    <hr>
-    <div>
-        <!--文章主体内容-->
-        <div id="doc-content">
+    <div style="width: 700px;padding-top: 30px;margin: auto">
+        <div>
+            <li>作者：</li>
+            <div th:text="${article.author}"></div>
+            <li>发布时间：</li>
+            <div th:text="${article.publishDate}"></div>
+        </div>
+        <hr>
+        <div>
+            <!--文章主体内容-->
+            <div id="doc-content">
             <textarea id="append-test" style="display:none;" placeholder="markdown" th:text="${article.articleContent}">
             </textarea>
+            </div>
         </div>
     </div>
 

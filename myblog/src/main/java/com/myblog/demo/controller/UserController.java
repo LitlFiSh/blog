@@ -61,15 +61,15 @@ public class UserController {
     }
 
     //修改密码页面跳转
-    @RequestMapping("/editPwd")
+    @GetMapping("/editPwd")
     public String editPwd(){
         return "UserManage/personal_info";   //跳转到修改密码页面
     }
 
     //添加用户的跳转
-    @RequestMapping("/newUser")
+    @GetMapping("/newUser")
     public String newUser(){
-        return "UserManage/addUser";   //跳转到添加用户页面
+        return "newUser";   //跳转到添加用户页面
     }
 
     //修改用户的跳转
@@ -81,7 +81,7 @@ public class UserController {
     }
 
     //跳转到管理用户页面
-    @RequestMapping("/userManage")
+    @GetMapping("/userManage")
     public String allUser(Model model, Integer page, Integer totalPage, HttpServletRequest request){
         if(page == null)
             page = 0;

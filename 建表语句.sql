@@ -4,6 +4,7 @@ CREATE TABLE `article`(
 	`articleTitle` varchar(255) NOT NULL,
 	`articleContent` longtext NOT NULL,
 	`publishDate` varchar(255) NOT NULL,
+	`updateDate` varchar(255) NOT NULL,
 	PRIMARY KEY (`id`)
 )ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 CREATE TABLE `user`(

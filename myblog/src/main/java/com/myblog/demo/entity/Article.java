@@ -12,6 +12,15 @@ public class Article {
     private String articleTitle;
     private String articleContent;
     private String publishDate;
+    private String updateDate;
+
+    public String getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(String updateDate) {
+        this.updateDate = updateDate;
+    }
 
     public Integer getId() {
         return id;

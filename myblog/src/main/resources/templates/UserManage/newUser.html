@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script language="JavaScript" th:src="@{/webjars/jquery/3.5.1/jquery.js}"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link th:href="@{/dist/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link th:href="@{/assets/css/ie10-viewport-bug-workaround.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/navbar.css}" rel="stylesheet">
+
+</head>
+<body>
+<div th:replace="publicItem/bar::topbar(currentUri='manage')"></div>
+<div style="width: 700px;padding-top: 30px;margin: auto">
+    <div>
+        <p>添加用户</p>
+        <form class="form-control-static" th:action="@{/user}" method="post">
+            <label class="sr-only" >UserName</label>
+            <input type="text" name="username" class="form-control" placeholder="UserName" required>
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">添加</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
